@@ -1,0 +1,15 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs",
+    "debug": "node --nolazy --inspect-brk=9229 ./node_modules/.bin/vuepress dev docs --no-cache"
+  },
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "glob": "^7.1.4",
+    "vuepress": "^1.0.0-alpha.48"
+  }
+}
