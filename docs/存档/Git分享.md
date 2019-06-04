@@ -77,6 +77,15 @@ git reflog
 
 
 
+## 不常用
+
+```shell
+# 解决 git status 中文不能正常显示的问题
+git config --global core.quotepath false
+```
+
+
+
 ## 现状
 
 目前的操作，我观察到，大家都是
