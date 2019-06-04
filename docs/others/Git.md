@@ -1,4 +1,4 @@
-# Git 分享
+# Git 
 
 > 一个快速、可扩展的分布式版本控制系统
 
@@ -82,6 +82,9 @@ git reflog
 ```shell
 # 解决 git status 中文不能正常显示的问题
 git config --global core.quotepath false
+
+# 撤销第一个提交：
+git update-ref -d HEAD
 ```
 
 

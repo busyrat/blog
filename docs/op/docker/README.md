@@ -94,12 +94,16 @@ Tip加速: dokcer -> Preferences -> Advanced -> Registry mirrors
   docker push
   ```
 
-- 其他命令
+## 其他命令
 
-  ```shell
-  docker logs -f xxx
-  docker build -t xxx:1.0 -f /root/Dockfile
-  # -t(--tag) 起名字  -f(--file) 指定文件
-  ```
+```shell
+# 查看日志
+docker logs -f xxx
 
-  
+# 打包镜像 -t(--tag) 起名字  -f(--file) 指定文件
+docker build -t xxx:1.0 -f /root/Dockfile
+
+# 到容器内部
+docker exec -it xxx /bin/bash
+```
+
