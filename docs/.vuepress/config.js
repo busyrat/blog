@@ -5,23 +5,41 @@ module.exports = {
   themeConfig: {
     // 导航栏
     nav: [
-      { text: '工具', 
+      { text: 'fe', 
         items: [
-          { text: 'docker', link: '/docker/' }
+          { text: 'library', link: '/fe/library/' },
+          { text: 'ie9', link: '/fe/ie9/' },
+          { text: '知识点', link: '/fe/知识点/' },
         ]
       },
-      { text: "Linux", link: "/linux" },
-      {
-        text: "FE",
+      { text: 'op', 
         items: [
-          { text: "vue", link: "/fe/vue" }
+          { text: 'docker', link: '/op/docker/' },
+          { text: 'linux', link: '/op/linux' },
+          { text: 'gitlab-ci', link: '/op/gitlab-ci' },
+        ]
+      },
+      {
+        text: 'be',
+        items: [
+          { text: 'Node', link: '/be/node' },
+          { text: 'Redis', link: '/be/Redis' },
+        ]
+      },
+      {
+        text: 'others',
+        items: [
+          { text: '《重学前端》', link: '/others/《重学前端》' },
+          { text: 'Git', link: '/others/Git' },
+          { text: '工具集', link: '/others/工具集' },
         ]
       },
       { text: 'github', link: 'https://github.com/busyrat/blog' },
     ],
     // 侧边栏
     sidebar: {
-      ...genSideBar('/docker/')
+      ...genSideBar('/fe/library/'),
+      ...genSideBar('/op/docker/'),
     },
 
     editLinks: true,
