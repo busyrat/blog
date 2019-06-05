@@ -4,6 +4,11 @@
 
 - npm 使用git仓库地址示例：`git+ssh://git@git.wh.site:fe/react-native-calendars#master#ca1a48030bc4c49762d499c69d3e26765c99e705`
 
+
+
 ### npm link
 
-自己新建一个包，在根目录执行 `npm link` 命令，就会把这个包链接到全局，然后在另一个工程中 npm link path-xxx 就会把全局的包连接到这个工程中，实现了两个工程开发的同步，卸载 npm unlink xxx
+[你所不知道的模块调试技巧 - npm link](https://github.com/atian25/blog/issues/17)
+
+自己新建一个包，在根目录执行 `npm link` 命令，就会把这个包链接到全局，然后在另一个工程中 npm link path/xxx 就会把全局的包连接到这个工程中，实现了两个工程开发的同步，卸载 npm unlink xxx
+

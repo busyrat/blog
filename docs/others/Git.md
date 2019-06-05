@@ -4,17 +4,6 @@
 
 
 
-## 目标
-
-这次的分享主要解决以下几个问题：
-
-- 解决由于对 git 概念的不清晰，导致使用上出现的各种问题
-- 规范 git 的使用
-- 抛弃 GUI，拥抱终端命令
-- 分享一些日常高频使用的插件
-
-
-
 ## 开篇一张图
 
 ![1.png](http://www.ruanyifeng.com/blogimg/asset/2015/bg2015120901.png)
@@ -85,11 +74,43 @@ git config --global core.quotepath false
 
 # 撤销第一个提交：
 git update-ref -d HEAD
+
+# 搜索关键词
+git grep --break --heading -n "xxx"
 ```
 
 
 
-## 现状
+## git hooks
+
+在 git 各个动作下会触发的脚本
+
+[一次简单的尝试](https://www.npmjs.com/package/sensitive-code)
+
+也可以不依赖 [husky](https://github.com/typicode/husky) ，直接写 .git/hooks/pre-commit 脚本，但是这是在 git 客户端的修改，所以只对本地仓库有效
+
+### 参考
+
+[官方]([https://git-scm.com/book/zh/v2/%E8%87%AA%E5%AE%9A%E4%B9%89-Git-Git-%E9%92%A9%E5%AD%90](https://git-scm.com/book/zh/v2/自定义-Git-Git-钩子))
+
+[用 Node.js 写前端自己的 Git-hooks](https://github.com/zwhu/blog/issues/31)
+
+
+
+## 一次关于 git rebase 的分享
+
+### 目标
+
+这次的分享主要解决以下几个问题：
+
+- 解决由于对 git 概念的不清晰，导致使用上出现的各种问题
+- 规范 git 的使用
+- 抛弃 GUI，拥抱终端命令
+- 分享一些日常高频使用的插件
+
+
+
+### 现状
 
 目前的操作，我观察到，大家都是
 
@@ -108,7 +129,7 @@ git update-ref -d HEAD
 
 
 
-## 解决方案：rebase
+### 解决方案：rebase
 
 - 多看说话
 
@@ -138,7 +159,7 @@ git update-ref -d HEAD
 
 
 
-## commit 的规范
+### commit 的规范
 
 ```shell
 <type>: <message>
@@ -160,7 +181,7 @@ type类型：
 
 
 
-## 工具提高效率
+### 工具提高效率
 
 推荐大家都用 vscode
 
@@ -169,7 +190,7 @@ type类型：
 
 
 
-## 参考文章
+### 参考文章
 
 - [常用 Git 命令清单 · 阮一峰]([http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html))
 - [Git教程 - 廖雪峰](https://www.liaoxuefeng.com/wiki/896043488029600)
