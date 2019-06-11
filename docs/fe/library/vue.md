@@ -9,3 +9,7 @@
 
   
 
+### 公开课
+
+[尤雨溪讲解](https://www.bilibili.com/video/av49047971/?p=1)
+
