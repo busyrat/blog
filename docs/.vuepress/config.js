@@ -2,6 +2,7 @@ const { genNavAndSidebar } = require('./utils')
 module.exports = {
   base: '/blog/',
   title: 'busyrat blog',
+  dest: 'blog',
   port: 7070,
   cache: false,
   themeConfig: {

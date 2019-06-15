@@ -4,6 +4,7 @@
 const containers = require('./containers')
 const overWriteFenceRule = require('./fence')
 const path = require('path')
+const { hashCode, creatDemoComponent } = require('./utils')
 
 module.exports = (options, ctx) => {
   return {
@@ -12,6 +13,7 @@ module.exports = (options, ctx) => {
     enhanceAppFiles: [
       path.resolve(__dirname, 'enhanceAppFile.js')
     ],
+    // #region enhanceAppFiles
     // enhanceAppFiles() {
     //   return {
     //     name: 'dynamic-code',
@@ -24,6 +26,18 @@ module.exports = (options, ctx) => {
     //      `
     //   }
     // },
+    // #endregion
+    extendPageData($page) {
+      let { _content: content, key, regularPath, relativePath } = $page
+      if (typeof content === 'string') {
+        let demoCodes = content.split(/:::/).filter(s => /^\s*demo/.test(s))
+  
+        demoCodes.forEach((code, index) => {
+          const tagName = `demo-block-${hashCode(relativePath)}-${index}`
+          creatDemoComponent(code, tagName)
+        })
+      }
+    },
 
     extendMarkdown(md) {
       overWriteFenceRule(md)
