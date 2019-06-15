@@ -9,21 +9,21 @@ module.exports = (options, ctx) => {
   return {
     name: 'md-demo-block',
 
-    // enhanceAppFiles: [
-    //   path.resolve(__dirname, 'enhanceAppFile.js')
-    // ],
-    enhanceAppFiles() {
-      return {
-        name: 'dynamic-code',
-        content: `
-          import DemoBlock from '${path.resolve(__dirname, 'DemoBlock.vue')}'
+    enhanceAppFiles: [
+      path.resolve(__dirname, 'enhanceAppFile.js')
+    ],
+    // enhanceAppFiles() {
+    //   return {
+    //     name: 'dynamic-code',
+    //     content: `
+    //       import DemoBlock from '${path.resolve(__dirname, 'DemoBlock.vue')}'
 
-          export default ({ Vue, router }) => {
-            Vue.component('DemoBlock', DemoBlock)
-          }
-         `
-      }
-    },
+    //       export default ({ Vue, router }) => {
+    //         Vue.component('DemoBlock', DemoBlock)
+    //       }
+    //      `
+    //   }
+    // },
 
     extendMarkdown(md) {
       overWriteFenceRule(md)

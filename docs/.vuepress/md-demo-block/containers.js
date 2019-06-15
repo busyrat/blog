@@ -15,11 +15,11 @@ module.exports = md => {
   }
 
   creatPath = (path) => {
-    const pathArr = path.split('/');
+    const pathArr = path.split(/[\\\/]/);
     let _path = '';
     for (let i = 0; i < pathArr.length; i++) {
       if (pathArr[i]) {
-        _path += `/${pathArr[i]}`;
+        _path += `${pathArr[i]}/`;
         if (!fs.existsSync(_path)) {
           fs.mkdirSync(_path);
         }
