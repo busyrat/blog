@@ -1,5 +1,5 @@
 .DS_Store
 node_modules
 zzz.md
-demo-block-*.vue
+docs/.vuepress/components/demo/block-*.vue
 blog/

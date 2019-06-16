@@ -2,7 +2,7 @@ const container = require('markdown-it-container')
 const mdit = require('markdown-it')()
 const { hashCode, creatDemoComponent } = require('./utils')
 
-module.exports = md => {
+module.exports = (md, ctx) => {
   tagNameIndex = 0
 
   const validate = params => {
@@ -23,7 +23,7 @@ module.exports = md => {
         tagNameIndex++
       }
       const tagName = `demo-block-${hashCode(env.relativePath)}-${tagNameIndex}`
-      creatDemoComponent(content, tagName)
+      creatDemoComponent(ctx, content, tagName)
 
       return `<demo-block>
         <template slot="source"><${tagName}/></template>
