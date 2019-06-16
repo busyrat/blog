@@ -13,6 +13,7 @@
     "glob": "^7.1.4",
     "markdown-it": "^8.4.2",
     "markdown-it-container": "^2.0.0",
+    "memory-fs": "^0.4.1",
     "node-sass": "^4.12.0",
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.6.10",

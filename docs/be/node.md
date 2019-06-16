@@ -12,6 +12,11 @@ path.relative() 相对地址
 <template>
   <el-button type="text">文字按钮11112222</el-button>
 </template>
+<script>
+export default {
+  name: 'demo-block--1820619977-0'
+}
+</script>
 ```
 :::
 
@@ -22,5 +27,10 @@ path.relative() 相对地址
 <template>
   <el-button type="text">文字按钮111</el-button>
 </template>
+<script>
+export default {
+  name: 'demo-block--1820619977-1'
+}
+</script>
 ```
 :::
