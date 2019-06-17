@@ -12,7 +12,11 @@
 {
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  /*  prettier的配置 */
+  "prettier.printWidth": 160,
+  "prettier.singleQuote": true, 
+  "prettier.semi": false,
 }
 ```
 
