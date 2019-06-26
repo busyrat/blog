@@ -4,7 +4,6 @@
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",
-    "memory-build": "cross-env NODE_ENV=memory vuepress build docs",
     "debug": "node --nolazy --inspect-brk=9229 ./node_modules/vuepress/cli.js dev docs --no-cache"
   },
   "main": "index.js",

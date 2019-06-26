@@ -3,51 +3,30 @@
 
 const containers = require('./containers')
 const overWriteFenceRule = require('./fence')
-const path = require('path')
-const fs = require('fs')
-const { hashCode, creatDemoComponent, creatTempDemoComponent, resolvePath } = require('./utils')
+const { hashCode, creatDemoComponent, resolvePath } = require('./utils')
 
 module.exports = (options, ctx) => {
-
-  const getDemoComponents = () => {
-    return new Promise((resolve, reject) => {
-      const timer = setInterval(() => {
-        if (global.end) {
-          let demoComponents = fs.readdirSync(path.resolve(ctx.tempPath, 'dynamic') ).map(name => name.slice(0, -4))
-  
-          resolve(demoComponents)
-          clearInterval(timer)
-        }
-      }, 10)
-    })
-  }
-
   return {
     name: 'md-demo-block',
 
     async enhanceAppFiles() {
-      let componentRegisterStr = ''
-      if (process.env.NODE_ENV === 'memory') {
-        let demoComponentsName = await getDemoComponents()
-        componentRegisterStr = demoComponentsName.map(componentName => {
-          return `Vue.component('${componentName}', () => import('@dynamic/${componentName}'))\n`
-        }).join('')
-      }
-    
       return {
         name: 'dynamic-code',
         content: `
+          const requireComponent = require.context('@dynamic/demo/', true, /.*.vue$/)
           export default ({ Vue, router }) => {
-            Vue.component('DemoBlock', () => import('${ resolvePath('DemoBlock.vue')}'))
-
-            ${componentRegisterStr}
+            Vue.component('DemoBlock', () => import('${resolvePath('DemoBlock.vue')}'))
+            requireComponent.keys().forEach(fileName => {
+              const componentConfig = requireComponent(fileName)
+              const component = componentConfig.default
+              Vue.component(fileName.match(/\\.\\/(.*)\\.vue/)[1], component)
+            })
           }
          `
       }
     },
 
     extendPageData($page) {
-
       let { _content: content, key, regularPath, relativePath } = $page
 
       if (typeof content === 'string') {
@@ -57,11 +36,6 @@ module.exports = (options, ctx) => {
           const tagName = `demo-block-${hashCode(relativePath)}-${index}`
           creatDemoComponent(ctx, code, tagName)
         })
-      }
-      if (process.env.NODE_ENV === 'memory') {
-        if (/end.md/.test(relativePath)) {
-          global.end = true
-        }
       }
     },
 

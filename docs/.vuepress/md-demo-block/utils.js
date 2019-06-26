@@ -1,8 +1,6 @@
 const path = require('path')
 const resolvePath = p => path.resolve(__dirname, p).replace(/\\/g, '/')
 const fs = require('fs')
-// const MemoryFileSystem = require("memory-fs");
-// const fs = new MemoryFileSystem();
 
 const hashCode = s => {
   return s.split('').reduce(function(a, b) {
@@ -23,17 +21,10 @@ const mkdirpSync = path => {
 }
 
 const creatDemoComponent = async (ctx, content, name) => {
-  if (process.env.NODE_ENV === 'memory') {
-    await ctx.writeTemp(`dynamic/${name}.vue`, content, { encoding: 'utf8' })
-  } else {
-    mkdirpSync(resolvePath('../components/demo'))
-    let file = resolvePath(`../components/demo/${name.slice(5)}.vue`)
-    fs.writeFileSync(file, content, { encoding: 'utf8' })
-  }
+  await ctx.writeTemp(`dynamic/demo/${name}.vue`, content, { encoding: 'utf8' })
 }
 
 module.exports = {
-  // fs,
   resolvePath,
   hashCode,
   creatDemoComponent
