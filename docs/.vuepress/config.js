@@ -15,7 +15,7 @@ module.exports = {
     editLinkText: '在 GitHub 上编辑此页'
   },
   plugins: [
-    require('./md-demo-block')
+    require('./vue-demo')
     // 这个插件对两个拥有 script 的 demo 不友好
     // [
     //   'demo-code',
