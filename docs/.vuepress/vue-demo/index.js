@@ -4,12 +4,24 @@
 const containers = require('./containers')
 const overWriteFenceRule = require('./fence')
 const { hashCode, creatDemoComponent, resolvePath } = require('./utils')
+const { vuese } = require('./vuese')
+
+const { genNavAndSidebar } = require('../utils')
 
 module.exports = (options, ctx) => {
   return {
-    name: 'md-demo-block',
+    name: 'vue-demo',
 
-    async enhanceAppFiles() {
+    ready() {
+      if (options.vuese === true) {
+        vuese()
+        let { sidebar, nav } = genNavAndSidebar()
+        ctx.siteConfig.themeConfig.sidebar = sidebar
+        ctx.siteConfig.themeConfig.nav = nav
+      }
+    },
+
+    enhanceAppFiles() {
       return {
         name: 'dynamic-code',
         content: `
