@@ -1,6 +1,6 @@
 {
   "name": "vuepress-plugin-vuese-vue-demo",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,11 @@
     "type": "git",
     "url": "https://github.com/busyrat/blog/tree/master/docs/.vuepress/vuese-vue-demo"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "busyrat",
+  "license": "ISC",
+  "devDependencies": {
+    "@vuese/markdown-render": "^2.2.9",
+    "@vuese/parser": "^2.1.8",
+    "rimraf": "^2.6.3"
+  }
 }

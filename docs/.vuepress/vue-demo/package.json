@@ -1,6 +1,6 @@
 {
   "name": "vuepress-plugin-vue-demo",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -16,5 +16,9 @@
     "url": "https://github.com/busyrat/blog/tree/master/docs/.vuepress/vue-demo"
   },
   "author": "busyrat",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "markdown-it": "^8.4.2",
+    "markdown-it-container": "^2.0.0"
+  }
 }
