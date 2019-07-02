@@ -27,13 +27,13 @@ module.exports = (options, ctx) => {
     },
 
     extendPageData($page) {
-      let { _content: content, key, regularPath, relativePath } = $page
+      let { _content: content, key, relativePath } = $page
 
       if (typeof content === 'string') {
         let demoCodes = content.split(/:::/).filter(s => /^\s*demo/.test(s))
 
         demoCodes.forEach((code, index) => {
-          const tagName = `demo-block-${hashCode(relativePath)}-${index}`
+          const tagName = `demo-block-${relativePath ? hashCode(relativePath) : key}-${index}`
           creatDemoComponent(ctx, code, tagName)
         })
       }
