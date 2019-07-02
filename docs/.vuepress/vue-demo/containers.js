@@ -22,7 +22,13 @@ module.exports = (md, ctx) => {
       } else {
         tagNameIndex++
       }
-      const tagName = `demo-block-${hashCode(env.relativePath)}-${tagNameIndex}`
+      let key = env.relativePath.match(/temp-pages\/(.*?)\.md/)
+      if (key) {
+        key = key[1]
+      } else {
+        key = hashCode(env.relativePath)
+      }
+      const tagName = `demo-block-${key}-${tagNameIndex}`
       creatDemoComponent(ctx, content, tagName)
 
       return `<demo-block>
