@@ -1,15 +1,30 @@
 const { vuese } = require('./vuese')
 
 module.exports = (opts, ctx) => {
-  opts = Object.assign(
-    {
-      navIndex: 0,
-      edit: false
-    },
-    opts
-  )
+  const defaultOpts = {
+    navIndex: 0,
+    edit: false,
+    entry: ''
+  }
+  opts = Object.assign(defaultOpts, opts)
   return {
     name: 'vuese-vue-demo',
+
+    enhanceAppFiles() {
+      return {
+        name: 'entry-component',
+        content: `
+          const requireComponent = require.context('${opts.entry}', true, /.*.vue$/)
+          export default ({ Vue, router }) => {
+            requireComponent.keys().forEach(fileName => {
+              const componentConfig = requireComponent(fileName)
+              const component = componentConfig.default
+              Vue.component(component.name, component)
+            })
+          }
+         `
+      }
+    },
 
     async ready() {
       const componentPath = '/components/'

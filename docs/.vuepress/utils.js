@@ -43,7 +43,7 @@ const genSideBar = function(dirs) {
  *    },
  * }
  */
-exports.genNavAndSidebar = function({ include = [], exclude = [], github = false }) {
+const genNavAndSidebar = function({ include = [], exclude = [], github = false }) {
   let ret = {
     nav: [],
     sidebar: {}
@@ -91,4 +91,9 @@ exports.genNavAndSidebar = function({ include = [], exclude = [], github = false
     ret.nav.push({ text: 'github', link: 'https://github.com/busyrat/blog' })
   }
   return ret
+}
+
+module.exports = {
+  DOCS_DIR,
+  genNavAndSidebar
 }

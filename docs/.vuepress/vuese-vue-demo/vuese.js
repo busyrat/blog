@@ -12,7 +12,7 @@ exports.vuese = async function(opts, ctx) {
   if (opts.edit) {
     componentPath = mkdirpSync(resolvePath(`../../components`))
   }
-  const componentSources = getComponents()
+  const componentSources = getComponents(opts.entry)
 
   const componentsName = []
 

@@ -1,4 +1,4 @@
-const { genNavAndSidebar } = require('./utils')
+const { genNavAndSidebar, DOCS_DIR } = require('./utils')
 module.exports = {
   base: '/blog/',
   dest: 'blog',
@@ -15,7 +15,7 @@ module.exports = {
     editLinkText: '在 GitHub 上编辑此页'
   },
   plugins: [
-    [require('./vuese-vue-demo'), { navIndex: -1 }],
+    [require('./vuese-vue-demo'), { navIndex: -1, entry: DOCS_DIR('../component') }],
     require('./vue-demo')
     // 这个插件对两个拥有 script 的 demo 不友好
     // [

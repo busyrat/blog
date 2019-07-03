@@ -3,8 +3,8 @@ const resolvePath = p => path.resolve(__dirname, p).replace(/\\/g, '/')
 const fs = require('fs')
 const glob = require('glob')
 
-const getComponents = () => {
-  const componentDemos = glob.sync(`${resolvePath('../../../components/')}/**/.demo.vue`)
+const getComponents = (entry) => {
+  const componentDemos = glob.sync(`${entry}/**/.demo.vue`)
   const componentSources = componentDemos.map(demoPath => path.resolve(path.dirname(demoPath), 'index.vue'))
 
   return componentSources
