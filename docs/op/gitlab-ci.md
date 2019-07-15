@@ -22,7 +22,7 @@ sudo docker run -d --name gitlab-runner --restart always \
 sudo docker exec -it gitlab-runner gitlab-ci-multi-runner register
 ```
 
-生成的 `/srv/gitlab-runner/config` 文件
+生成的 `/srv/gitlab-runner/config/config.toml` 文件
 
 ```toml
 concurrent = 1
@@ -97,3 +97,17 @@ before_script:
 
 ```
 
+
+
+### runner使用本地image
+
+```toml
+[[runners]]
+  ...
+  [runners.docker]
+    ...
+    volumes = ["/cache"]
+    pull_policy = "if-not-present"	// 添加这一行配置，重启runner
+```
+
+[参考](https://www.jianshu.com/p/2b7e73b0a096)

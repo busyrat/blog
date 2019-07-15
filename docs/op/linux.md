@@ -17,6 +17,19 @@
   systemctl restart sshd
   ```
 
+- 免问权限
+
+  ```shell
+  $ ssh -o StrictHostKeyChecking=no
+  ```
+
+- 免密登录
+
+  ```
+  # .ssh/authorized_keys 添加ssh公钥
+  ssh-rsa xxxxxxx
+  ```
+
   
 
 ### 定时任务
@@ -72,7 +85,74 @@
   * updates: mirrors.aliyun.com
   ```
 
-  
+
+
+
+### 切换到 root 用户
+
+```shell
+$ su
+```
+
+
+
+### 第三方仓库([IUS](https://ius.io/GettingStarted/))安装 git2.x
+
+```shell
+# 安装IUS 工具
+$ curl https://setup.ius.io | sh
+
+# 查询到 git2u
+$ yum search git
+...
+git.x86_64 : Fast Version Control System
+git2u.x86_64 : Fast Version Control System
+gitflow.noarch : Extensions providing operations for V. Driessen's branching model
+...
+
+# 安装 git 2.x
+$ yum -y install git2u
+
+# 完成
+$ git --version
+git version 2.16.4
+```
+
+[参考](https://blog.csdn.net/caimengyuan/article/details/80634752)
+
+
+
+### sshpass
+
+一个可以带上密码免交互的工具
+
+```shell
+sshpass -p $PASSWORD scp -r ./dist/* $USER@$SERVER:/data/www/
+```
+
+
+
+### lftp
+
+传送文件到目标服务器
+
+```shell
+lftp -c "mirror -R dist/ sftp://$USER:$PASSWORD@$SERVER/$TARGET/dist"
+```
+
+
+
+### 测速
+
+```shell
+wget https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py
+chmod +rx speedtest.py
+sudo mv speedtest.py /usr/local/bin/speedtest-cli
+sudo chown root:root /usr/local/bin/speedtest-cli
+speedtest-cli
+```
+
+
 
 ### 其他
 

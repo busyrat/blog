@@ -67,7 +67,7 @@ Tip加速: dokcer -> Preferences -> Advanced -> Registry mirrors
   EXPOSE 80
   ```
 
-  没一个语句都会生成一个新的 images
+  每一个语句都会生成一个新的 images
 
 ## 持久化方案
 
