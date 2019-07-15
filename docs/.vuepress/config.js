@@ -15,19 +15,7 @@ module.exports = {
     editLinkText: '在 GitHub 上编辑此页'
   },
   plugins: [
-    [require('./vuese-vue-demo'), { navIndex: -1, entry: DOCS_DIR('../component') }],
+    [require('./vuese-vue-demo'), { navIndex: -1, entry: DOCS_DIR('../src/component'), edit: false }],
     require('./vue-demo')
-    // 这个插件对两个拥有 script 的 demo 不友好
-    // [
-    //   'demo-code',
-    //   {
-    //     onlineBtns: {
-    //       codepen: false,
-    //       jsfiddle: false,
-    //       codesandbox: false
-    //     },
-    //     minHeight: 0
-    //   }
-    // ]
   ]
 }
