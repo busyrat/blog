@@ -108,6 +108,7 @@
       }
     }
     .demo-block-control {
+      z-index: 100;
       border-top: solid 1px #eaeefb;
       height: 44px;
       box-sizing: border-box;
@@ -161,6 +162,31 @@
         padding-right: 25px;
       }
     }
+
+    // 重置vuepress默认样式
+    // https://github.com/vuejs/vuepress/blob/master/packages/%40vuepress/theme-default/styles/index.styl
+    table {
+      margin: 0;
+    }
+    ul, ol {
+      padding-left: 0;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+      line-height: 1;
+      font-size: 100%;
+    }
+    p, ul, ol {
+      line-height: 1;
+    }
+    tr {
+      border-top: 0;
+      background-color: transparent;
+    }
+    th, td {
+      border: 0;
+    }
+    // end
   }
 </style>
 
