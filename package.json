@@ -10,6 +10,7 @@
   "license": "MIT",
   "devDependencies": {
     "@vue/component-compiler-utils": "^3.0.0",
+    "@vuepress/plugin-pwa": "^1.0.0-rc.1",
     "glob": "^7.1.4",
     "memory-fs": "^0.4.1",
     "node-sass": "^4.12.0",

@@ -24,5 +24,17 @@ module.exports = {
     editLinks: true,
     lastUpdated: '上次更新',
     editLinkText: '在 GitHub 上编辑此页'
-  }
+  },
+  plugins: [
+    [
+      '@vuepress/pwa',
+      {
+        serviceWorker: true,
+        updatePopup: {
+          message: 'blog 更新了',
+          buttonText: '刷新'
+        }
+      }
+    ]
+  ]
 }
