@@ -23,6 +23,7 @@
     "vuepress-plugin-vuese-vue-demo": "^1.0.8"
   },
   "dependencies": {
-    "element-ui": "^2.9.1"
+    "element-ui": "^2.9.1",
+    "moment": "^2.24.0"
   }
 }

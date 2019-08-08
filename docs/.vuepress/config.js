@@ -10,6 +10,12 @@ const navLinks = [
 
 nav = [...nav, ...navLinks]
 
+const transformer = (timestamp, lang) => {
+  const moment = require('moment')
+  moment.locale('zh-CN')
+  return moment(timestamp).fromNow()
+}
+
 module.exports = {
   base: '/blog/',
   dest: 'blog',
@@ -26,6 +32,7 @@ module.exports = {
     editLinkText: '在 GitHub 上编辑此页'
   },
   plugins: [
+    ['@vuepress/last-updated', { transformer }],
     [
       '@vuepress/pwa',
       {
