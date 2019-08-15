@@ -6,11 +6,11 @@
 
   ```shell
   vim /etc/ssh/sshd_config
-  
+
   # 找到 Port 22那一行，修改成
   Port 22
   Port 2202
-  
+
   # 重启 sshd 服务
   systemctl restart sshd
   ```
@@ -28,40 +28,28 @@
   ssh-rsa xxxxxxx
   ```
 
-  
-
 ## 定时任务
 
-- crontabs命令`可以定时按计划执行任务
+- crontabs 命令`可以定时按计划执行任务
   - 有些教程是执行 `crond`，实际上是 `cron`
 - `ls -l /etc/init.d` 查看那些命令可以执行
-
-
 
 ## 进程
 
 - 查看`ps -ef | grep mongo`
 
-
-
 ## 系统信息
 
 - 查看系统：`cat /etc/os-release`
-- Centos 查看 系统信息：`uname -r` 和 `cat /etc/issue` 或 `cat /etc/redhat-release` 
-
-
+- Centos 查看 系统信息：`uname -r` 和 `cat /etc/issue` 或 `cat /etc/redhat-release`
 
 ## systemctl
 
-- [参考]([http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html))
-
-
+- [参考](<[http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)>)
 
 ## curl
 
 - post 请求：`curl -d 'name=xiaoming&age=18' http://localhost:3000/api/add
-
-
 
 ## yum
 
@@ -69,12 +57,12 @@
 
   ```shell
   $ mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
-  
+
   $ wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
-  
+
   # 运行yum makecache生成缓存
   $ yum makecache
-  
+
   $ yum -y update
   已加载插件：fastestmirror, refresh-packagekit, security
   设置更新进程Loading mirror speeds from cached hostfile
@@ -83,16 +71,11 @@
   * updates: mirrors.aliyun.com
   ```
 
-
-
-
 ## 切换到 root 用户
 
 ```shell
 $ su
 ```
-
-
 
 ## 第三方仓库([IUS](https://ius.io/GettingStarted/))安装 git2.x
 
@@ -118,8 +101,6 @@ git version 2.16.4
 
 [参考](https://blog.csdn.net/caimengyuan/article/details/80634752)
 
-
-
 ## sshpass
 
 一个可以带上密码免交互的工具
@@ -128,8 +109,6 @@ git version 2.16.4
 sshpass -p $PASSWORD scp -r ./dist/* $USER@$SERVER:/data/www/
 ```
 
-
-
 ## lftp
 
 传送文件到目标服务器
@@ -137,8 +116,6 @@ sshpass -p $PASSWORD scp -r ./dist/* $USER@$SERVER:/data/www/
 ```shell
 lftp -c "mirror -R dist/ sftp://$USER:$PASSWORD@$SERVER/$TARGET/dist"
 ```
-
-
 
 ## 测速
 
@@ -150,9 +127,7 @@ sudo chown root:root /usr/local/bin/speedtest-cli
 speedtest-cli
 ```
 
-
-
-## 防火墙开放IP段
+## 防火墙开放 IP 段
 
 在一台服务器上部署了一个 npm 私有仓库（xxx:4873），但是在用 gitlab-ci runner 下载依赖的时候，怎么都访问不到。
 
@@ -184,27 +159,49 @@ curl: (7) Failed to connect to xxx port 4873: No route to host
 </zone>
 ```
 
-重启防火墙：`systemctl restart firewalld.service`，一切OK
+重启防火墙：`systemctl restart firewalld.service`，一切 OK
 
-[参考：Linux系统通过firewall限制或开放IP及端口](https://blog.csdn.net/ywd1992/article/details/80401630)
+[参考：Linux 系统通过 firewall 限制或开放 IP 及端口](https://blog.csdn.net/ywd1992/article/details/80401630)
 
-[参考：Docker启动容器报错: connect: no route to host](https://blog.csdn.net/bacteriumX/article/details/83589126)
+[参考：Docker 启动容器报错: connect: no route to host](https://blog.csdn.net/bacteriumX/article/details/83589126)
 
 ## 文件大小
 
 `du -h -d 1`
 
-## 其他
+## Rpm RedHat Package Manager（RedHat 软件包管理工具）
 
-- Rpm 基本使用
+```shell
+# 下载
+$ rpm -i xxx
+# 查询
+$ rpm -q xxx
+# 删除
+$ rpm -e
+```
 
-  ```shell
-  # 下载
-  $ rpm -i xxx
-  # 查询
-  $ rpm -q xxx
-  # 删除
-  $ rpm -e
-  ```
+## frp
 
-  
+> frp 是一个可用于内网穿透的高性能的反向代理应用，支持 tcp, udp, http, https 协议。
+
+### 使用
+
+- [下载软件](https://github.com/fatedier/frp/releases) (mac 使用 darwin, 小米路由器 3 使用 mipsle)
+
+- 安装软件分为两部分：将 frps 及 frps.ini 放到具有公网 IP 的机器上；将 frpc 及 frpc.ini 放到处于内网环境的机器上。两个软件需要版本一致。
+
+- 配置 frps.ini 执行 `./frps -c ./frps.ini`
+
+- 配置 frpc.ini 执行 `./frpc -c ./frpc.ini`
+
+- 后台运行
+
+  - screen command
+
+  - nohup command &
+
+### 参考
+
+[frp 官方](https://github.com/fatedier/frp)
+
+[一篇好博文](http://www.sunnyrx.com/2016/10/21/simple-to-use-frp/)
