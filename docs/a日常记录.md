@@ -7,8 +7,9 @@
 - gis
 - canvas
 - Object.create
-- Select Cascader TimePicker DatePicker DateTimePicker Dropdown
-- Table  NavMenu 
+- Select Cascader TimePicker DatePicker DateTimePicker Dropdown / Table  NavMenu 
+- 循环
+- github issue vuepress
 
 ## 日常
 
@@ -121,3 +122,49 @@ add(1)(2)(3)；// 6
 https://blog.csdn.net/bacteriumX/article/details/83589126
 
 https://blog.csdn.net/Mr__fang/article/details/7208812
+
+# CSSStyleSheet
+
+https://github.com/odoo/odoo/issues/22517#issuecomment-361217543
+
+https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet
+
+
+
+## v-title
+
+```js
+directives: {
+  ztitle: {
+    inserted: function(el) {
+      const fontSize = window.parseInt(window.getComputedStyle(el).fontSize)
+      const length = el.innerText.length
+      const elWidth = fontSize * length
+      const elWiewWidth = window.parseInt(window.getComputedStyle(el).width)
+      if (elWidth > elWiewWidth) {
+        el.setAttribute('title', el.innerText)
+      }
+    }
+  }
+},
+```
+
+style
+
+```scss
+.ellipsis {
+  width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+```
+
+
+
+https://api.github.com/repos/kuitos/kuitos.github.io
+
+## JavaScript版 数据结构与算法
+
+https://coding.imooc.com/class/315.html
+

@@ -76,10 +76,9 @@ new ComponentConstructor({ propsData: props }).$mount()._vnode
 
 ## 一些启发
 
-MessageBox 组件是如何做到通过属性传递 VNode 的呢？查看 element 的源代码，发现是通过 slot 传递的
+MessageBox 组件是如何做到通过属性传递 VNode 的呢？查看 element 的[源代码](https://github.com/ElemeFE/element/blob/dev/packages/message-box/src/main.js)，发现是通过 slot 传递的
 
 ```js
-// https://github.com/ElemeFE/element/blob/dev/packages/message-box/src/main.js
 // 实例化组件
 instance = new MessageBoxConstructor({
   el: document.createElement('div')

@@ -200,3 +200,16 @@ type类型：
 - [Git教程 - 廖雪峰](https://www.liaoxuefeng.com/wiki/896043488029600)
 - [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0-beta.4/)
 
+
+
+## 合并多次 commit
+
+`git rebase -i xxxxxxx`会让你选择合并的提交：
+
+```
+pick xxxxxxx '注释**********'
+...
+```
+
+把 `pick` 换成 `squash`就代表那个提交需要合并，然后保存退出，后面的操作就跟 `rebase`一样了
+

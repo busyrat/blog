@@ -169,6 +169,18 @@ curl: (7) Failed to connect to xxx port 4873: No route to host
 
 `du -h -d 1`
 
+## 字符串处理
+
+把根目录下的 *.md 文件以链接的形式写入 README
+
+`ls -1 | awk -F '.md' '{print "[" $1 "](./" $1 ")\n" }' >> README.md`
+
+## tree
+
+```
+tree -L 2 -I 'node_modules|.git|.DS_Store' -a
+```
+
 ## Rpm RedHat Package Manager（RedHat 软件包管理工具）
 
 ```shell
