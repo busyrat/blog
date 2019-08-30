@@ -9,9 +9,10 @@
 webpack 创造了很多概念，使用前务必要弄清楚：[概念术语](https://webpack.docschina.org/glossary)
 
 - 基础: entry, output, loader, plugins, mode
+
 - 进阶: module, chunk, bundle
 
-## 插件
+  ![](https://raw.githubusercontent.com/busyrat/picgo/master/webpack1.png)
 
 
 
