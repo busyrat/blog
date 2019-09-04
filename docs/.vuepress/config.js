@@ -32,6 +32,7 @@ module.exports = {
     editLinkText: '在 GitHub 上编辑此页'
   },
   plugins: [
+    'mathjax',
     ['@vuepress/last-updated', { transformer }],
     [
       '@vuepress/pwa',
