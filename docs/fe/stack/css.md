@@ -86,8 +86,6 @@ flex: 24px => 1 1 24px
   }
 ```
 
-
-
 ### 对 flex-basis 的理解：
 
 规定的是子元素的基准值
@@ -97,4 +95,51 @@ auto：主尺寸 | content
 content：px | auto
 
 百分比：相对于父容器 | auto
+
+## BFC 和 IFC
+
+> BFC = Block Formatting Context = Block-level box + Formatting Context
+>
+> IFC = Inline Formatting Context
+
+block-level box 块级元素：block, list-item, table
+
+inline-level box 内联元素：inline, inline-block, inline-table
+
+### BFC
+
+满足其一即可：
+
+- 根元素
+- float 不为 none
+- overflow 不为 visible
+- display 为 inline-block, table/table-cell, table-caption
+- position 为 absolute 或 fixed
+
+规则:
+
+- Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠
+- BFC的区域不会与float box重叠。
+- 计算BFC的高度时，浮动元素也参与计算
+
+可以解决的问题：
+
+- 相邻 margin 的合并问题
+- 父子 margin 融合的问题
+- 和 float box 重叠
+- 清浮动
+
+### 参考
+
+[BFC 原理解析](https://github.com/zuopf769/notebook/blob/master/fe/BFC%E5%8E%9F%E7%90%86%E5%89%96%E6%9E%90/README.md)
+
+## CSS 动画
+
+### transition
+
+- transition-property: 属性
+- transition-duration: 间隔
+- transition-timing-function: 曲线
+- transition-delay: 延迟
+- 常用钩子: transitionend
 
