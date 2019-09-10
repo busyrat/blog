@@ -7818,10 +7818,10 @@ vuepress-plugin-mathjax@^1.2.8:
     mathjax3 "3.0.0-beta.3"
     vuepress-mergeable "^1.0.2"
 
-vuepress-plugin-vue-demo@^1.0.12:
-  version "1.0.12"
-  resolved "https://registry.yarnpkg.com/vuepress-plugin-vue-demo/-/vuepress-plugin-vue-demo-1.0.12.tgz#f2106cc9124b0471639a621ef0017a94220b8c2b"
-  integrity sha512-+MJ0E5oLZHxH4p/A0BH34NRNDRx+AFK+ddS92cPpY9txQ3zaFyBIfB/HTmGSLJ5pdbi4QDNWgd2D4lopTmIcLw==
+vuepress-plugin-vue-demo@^1.0.15:
+  version "1.0.15"
+  resolved "https://registry.npmjs.org/vuepress-plugin-vue-demo/-/vuepress-plugin-vue-demo-1.0.15.tgz#43414f7361a474db3bd998804485ce2433c83044"
+  integrity sha512-CTG6I0HAUTW13SSd84c6/3XzEidwqX/yZ3tmKSHSIEndJOZpED/x1i9Yj1Rfg34AZ2OSz9UiPupenQp5ozp0+A==
   dependencies:
     markdown-it "^8.4.2"
     markdown-it-container "^2.0.0"

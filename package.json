@@ -20,7 +20,7 @@
     "vuepress-plugin-elementui-docs": "^1.0.13",
     "vuepress-plugin-iconfont-docs": "^1.0.2",
     "vuepress-plugin-mathjax": "^1.2.8",
-    "vuepress-plugin-vue-demo": "^1.0.12",
+    "vuepress-plugin-vue-demo": "^1.0.15",
     "vuepress-plugin-vuese-vue-demo": "^1.0.8"
   },
   "dependencies": {
