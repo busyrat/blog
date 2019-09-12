@@ -5,7 +5,7 @@ heroText: blog
 ---
 
 <center>
-  <a href="https://travis-ci.org/busyrat/blog">
-    <img src="https://travis-ci.org/busyrat/blog.svg?branch=master"  alt="Build Status"/>
+  <a href="https://github.com/busyrat/blog/actions">
+    <img src="http://aliyunfc.tarocch1.com/github-actions-badge/busyrat/blog"  alt="Build Status"/>
   </a>
 </center>
