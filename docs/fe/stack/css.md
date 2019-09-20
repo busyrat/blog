@@ -133,13 +133,11 @@ inline-level box 内联元素：inline, inline-block, inline-table
 
 [BFC 原理解析](https://github.com/zuopf769/notebook/blob/master/fe/BFC%E5%8E%9F%E7%90%86%E5%89%96%E6%9E%90/README.md)
 
-## CSS 动画
+## SVG
 
-### transition
+### 参考
 
-- transition-property: 属性
-- transition-duration: 间隔
-- transition-timing-function: 曲线
-- transition-delay: 延迟
-- 常用钩子: transitionend
+[How SVG Line Animation Works](https://css-tricks.com/svg-line-animation-works/)
+
+[svgtrick svg博客](http://svgtrick.com/)
 

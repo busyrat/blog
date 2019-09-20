@@ -1,8 +1,23 @@
 ## path 模块
 
-path.join() 结果是绝对路径
+### 五种路径
 
-path.relative() 相对地址
+- `dirname`：总是返回被执行的JS所在文件夹的绝对路径,
+-  `filename`：总是返回被执行的 js 的绝对路径
+-  `process.cwd()`：总是返回运行 node 命令时所在的文件夹的绝对路径
+-  `./`, `../`：只有在`require`中使用相对路径，其他地方一律用绝对路径
+
+### 常用API
+
+- path.join 结果是绝对路径
+
+- path.normalize 格式化路径
+- path.parse 解析一段路径
+
+- path.relative 前面的相对后面的，结果相对地址
+- path.basename 文件名，传入第二个参数可以顺便把后缀去了
+- path.dirname 文件所在文件夹的名字
+- path.extname 文件名后缀
 
 ## node调试
 
