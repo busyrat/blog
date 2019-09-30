@@ -51,6 +51,12 @@
 
 - post 请求：`curl -d 'name=xiaoming&age=18' http://localhost:3000/api/add
 
+## 重置密码
+
+```shell
+sudo passwd root
+```
+
 ## yum
 
 - 换源
