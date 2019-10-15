@@ -1,3 +1,60 @@
+## 3. 闭包和高阶函数
+
+函数式语言的鼻祖是 LISP，JavaScript 在设计之初参考了 LISP 两大方言之一的 Scheme，引 入了 Lambda 表达式、闭包、高阶函数等特性。使用这些特性，我们经常可以用一些灵活而巧妙 的方式来编写 JavaScript 代码。
+
+### 高阶函数
+
+至少满足一个：
+
+- 函数可以作为参数被传递
+- 函数可以作为返回值输出
+
+### 应用场景
+
+- 回调函数
+
+- Array.prototype.sort
+
+- AOP（面向切面编程）
+
+- 函数柯里化 currying
+
+  ```js
+  var currying = function( fn ) {
+  	var args = [];
+  	return function () {
+    	if ( arguments.length === 0 ) {
+      	return fn.apply( this, args );
+      } else {
+      	[].push.apply( args, arguments );
+        return arguments.callee;
+      }
+    }
+  }
+  ```
+
+- uncurrying
+
+  ```javascript
+  Function.prototype.uncurrying = function () { 
+  	var self = this;
+  	return function() {
+  		var obj = Array.prototype.shift.call( arguments );
+  		return self.apply( obj, arguments )
+  	}
+  }
+  ```
+
+  ```javascript
+  Function.prototype.uncurrying = function(){
+  	var self = this; 
+  	return function(){
+  		return Function.prototype.call.apply( self, arguments ); 
+  	}
+  };
+  ```
+
+
 ## 7. 迭代器模式
 
 迭代器模式是指提供一种方法顺序访问一个聚合对象中的各个元素，而又不需要暴露该对象的内部表示。迭代器模式可以把迭代的过程从业务逻辑中分离出来，在使用迭代器模式之后，即使不关心对象的内部构造，也可以按顺序访问其中的每个元素。
@@ -332,3 +389,12 @@ Event.create('namespace2').trigger('click', 2)
   - 订阅的消息可能永远收不到消息，却始终占用内存
   - 过度使用，代码不容易跟踪
 
+## 16. 状态模式
+
+状态模式是一种非同寻常的优秀模式，它也许是解决某些需求场景的最好方法。状态模式的关键是区分事物内部的状态，事物内部状态的改变往往会带来事物的行为改变。
+
+## 17. 适配器模式（Adpter）
+
+- 适配器模式主要用来解决两个已有接口之间不匹配的问题，它不考虑这些接口是怎样实现的，也不考虑它们将来可能会如何演化。适配器模式不需要改变已有的接口，就能够使它们协同作用。
+- 装饰者模式和代理模式也不会改变原有对象的接口，但装饰者模式的作用是为了给对象增加功能。装饰者模式常常形成一条长的装饰链，而适配器模式通常只包装一次。代理模式是为了控制对对象的访问，通常也只包装一次。
+- 外观模式的作用倒是和适配器比较相似，有人把外观模式看成一组对象的适配器，但外观模式最显著的特点是定义了一个新的接口。
