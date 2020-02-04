@@ -29,6 +29,7 @@
 <script>
 import axios from "axios";
 import VeLine from "v-charts/lib/line.common";
+import dayjs from "dayjs";
 
 export default {
   props: {},
@@ -44,25 +45,16 @@ export default {
           }
         }
       },
-      grid: {
-        right: 20
-      },
       xAxis: {
-        type: "time",
         splitLine: {
           show: false
+        },
+        axisLabel: {
+          rotate: 45
         }
       }
     };
     return {
-      chartSettings: {
-        labelMap: {
-          confirmedCount: "确诊",
-          hubeiConfirmedCount: "湖北确诊",
-          hubeiIncreaseCount: "湖北增量",
-          increaseCount: "增量"
-        }
-      },
       city: "武汉",
       cities: [],
       cityData: {
@@ -76,7 +68,18 @@ export default {
     };
   },
 
-  computed: {},
+  computed: {
+    chartSettings() {
+      return {
+        labelMap: {
+          confirmedCount: this.city + "确诊",
+          hubeiConfirmedCount: "湖北确诊",
+          hubeiIncreaseCount: "湖北增量",
+          increaseCount: this.city + "增量"
+        }
+      };
+    }
+  },
 
   mounted() {
     axios
@@ -92,37 +95,42 @@ export default {
 
   methods: {
     convertData() {
-      this.chartSettings.labelMap.confirmedCount = this.city + "确诊";
-      this.chartSettings.labelMap.increaseCount = this.city + "增量";
       let cityRows = [];
       let cityIncreaseData = [];
-      let lastRow = { updateTime: 0, confirmedCount: 0 };
-      let lastCityRow = { confirmedCount: 0 };
-      this._areaData.results.forEach(row => {
-        if (row.updateTime - lastRow.updateTime >= 24 * 60 * 60 * 1000) {
+      let lastRow = {};
+      let lastCityRow = {};
+      let data = this._areaData.results.concat([]);
+      data.reverse().forEach((row, index) => {
+        row.updateTime = dayjs(row.updateTime).format("MM/DD");
+        if (
+          row.updateTime !== lastRow.updateTime &&
+          row.confirmedCount !== lastRow.confirmedCount
+        ) {
           let cityRow = row.cities.filter(i => i.cityName === this.city);
           if (cityRow.length) {
             cityRow = cityRow[0];
+
             cityRows.push({
               ...cityRow,
               updateTime: row.updateTime,
               hubeiConfirmedCount: row.confirmedCount
             });
-            if (cityRow.confirmedCount === undefined) {
-              cityRow.confirmedCount = 0;
+
+            if (index !== 0) {
+              cityIncreaseData.push({
+                updateTime: row.updateTime,
+                hubeiIncreaseCount: lastRow.confirmedCount - row.confirmedCount,
+                increaseCount:
+                  lastCityRow.confirmedCount - cityRow.confirmedCount
+              });
             }
-            cityIncreaseData.push({
-              updateTime: row.updateTime,
-              hubeiIncreaseCount: row.confirmedCount - lastRow.confirmedCount,
-              increaseCount: cityRow.confirmedCount - lastCityRow.confirmedCount
-            });
             lastRow = row;
             lastCityRow = cityRow;
           }
         }
       });
-      this.cityData.rows = cityRows;
-      this.cityIncreaseData.rows = cityIncreaseData;
+      this.cityData.rows = cityRows.reverse();
+      this.cityIncreaseData.rows = cityIncreaseData.reverse();
     }
   }
 };
