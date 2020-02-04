@@ -2,7 +2,7 @@
 
 找回写代码的乐趣
 
-![Github Actions](http://aliyunfc.tarocch1.com/github-actions-badge/busyrat/blog)
+![Github Actions](https://github.com/busyrat/blog/workflows/Deploy%20gh-pages/badge.svg)
 
 [github page](https://busyrat.github.io/blog/)
 
