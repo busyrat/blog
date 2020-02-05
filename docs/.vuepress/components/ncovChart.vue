@@ -118,7 +118,7 @@ export default {
 
             if (index !== 0) {
               cityIncreaseData.push({
-                updateTime: row.updateTime,
+                updateTime: lastRow.updateTime,
                 hubeiIncreaseCount: lastRow.confirmedCount - row.confirmedCount,
                 increaseCount:
                   lastCityRow.confirmedCount - cityRow.confirmedCount
