@@ -58,11 +58,21 @@ export default {
       city: "武汉",
       cities: [],
       cityData: {
-        columns: ["updateTime", "hubeiConfirmedCount", "confirmedCount"],
+        columns: [
+          "updateTime",
+          "hubeiConfirmedCount",
+          "confirmedCount",
+          "exceptConfirmedCount"
+        ],
         rows: []
       },
       cityIncreaseData: {
-        columns: ["updateTime", "hubeiIncreaseCount", "increaseCount"],
+        columns: [
+          "updateTime",
+          "hubeiIncreaseCount",
+          "increaseCount",
+          "exceptIncreaseCount"
+        ],
         rows: []
       }
     };
@@ -74,8 +84,10 @@ export default {
         labelMap: {
           confirmedCount: this.city + "确诊",
           hubeiConfirmedCount: "湖北确诊",
+          exceptConfirmedCount: `非${this.city}确诊`,
           hubeiIncreaseCount: "湖北增量",
-          increaseCount: this.city + "增量"
+          increaseCount: this.city + "增量",
+          exceptIncreaseCount: `非${this.city}增量`
         }
       };
     }
@@ -113,15 +125,20 @@ export default {
             cityRows.push({
               ...cityRow,
               updateTime: row.updateTime,
-              hubeiConfirmedCount: row.confirmedCount
+              hubeiConfirmedCount: row.confirmedCount,
+              exceptConfirmedCount: row.confirmedCount - cityRow.confirmedCount
             });
 
             if (index !== 0) {
+              let hubeiIncreaseCount =
+                lastRow.confirmedCount - row.confirmedCount;
+              let increaseCount =
+                lastCityRow.confirmedCount - cityRow.confirmedCount;
               cityIncreaseData.push({
                 updateTime: lastRow.updateTime,
-                hubeiIncreaseCount: lastRow.confirmedCount - row.confirmedCount,
-                increaseCount:
-                  lastCityRow.confirmedCount - cityRow.confirmedCount
+                hubeiIncreaseCount,
+                increaseCount,
+                exceptIncreaseCount: hubeiIncreaseCount - increaseCount
               });
             }
             lastRow = row;
