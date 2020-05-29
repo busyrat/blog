@@ -49,3 +49,15 @@ yarn install --network-timeout 1000000
 
 [参考](https://github.com/yarnpkg/yarn/issues/4890#issuecomment-358179301)
 
+
+
+### 版本自动更新
+
+```shell
+npm version patch
+npm version minor
+npm version major
+```
+
+
+

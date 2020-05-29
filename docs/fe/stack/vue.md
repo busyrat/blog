@@ -1,5 +1,13 @@
 # Vue
 
+## 源码构建
+
+基于 Rollup 构建
+
+从 package.json 中的 build 脚本出发：scripts/build.js
+
+源码学习 runtime + compile 版本，包含编译；平时开发中更多的使用 runtime 版本，效率更高
+
 ## 数据驱动
 
 ![new-vue](https://ustbhuangyi.github.io/vue-analysis/assets/new-vue.png)
@@ -20,6 +28,10 @@
           - `vm._update` 更新 DOM，涉及VNode 的 create、diff、patch 等过程
             - `vm.__patch__(patch)` 
               - `createElm`
+
+
+
+Vue.js 一个核心思想是数据驱动
 
 
 

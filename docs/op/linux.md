@@ -49,7 +49,7 @@
 
 ## curl
 
-- post 请求：`curl -d 'name=xiaoming&age=18' http://localhost:3000/api/add
+- post 请求：`curl -X POST -d 'name=xiaoming&age=18' http://localhost:3000/api/add
 
 ## 重置密码
 
