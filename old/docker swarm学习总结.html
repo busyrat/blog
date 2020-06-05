@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Docker Swarm | busyrat blog</title>
+    <meta name="description" content="找回写代码的乐趣">
+    <link rel="icon" href="/blog/pkq.png">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.6d141f6a.css" as="style"><link rel="preload" href="/blog/assets/js/app.d2fdc9c2.js" as="script"><link rel="preload" href="/blog/assets/js/3.54348689.js" as="script"><link rel="preload" href="/blog/assets/js/42.1273d541.js" as="script"><link rel="preload" href="/blog/assets/js/10.ff74173e.js" as="script"><link rel="prefetch" href="/blog/assets/js/11.382b8034.js"><link rel="prefetch" href="/blog/assets/js/12.e237bb5b.js"><link rel="prefetch" href="/blog/assets/js/13.466b0cbd.js"><link rel="prefetch" href="/blog/assets/js/14.26a27f91.js"><link rel="prefetch" href="/blog/assets/js/15.037bad83.js"><link rel="prefetch" href="/blog/assets/js/16.9db245c4.js"><link rel="prefetch" href="/blog/assets/js/17.2683ec44.js"><link rel="prefetch" href="/blog/assets/js/18.075bc460.js"><link rel="prefetch" href="/blog/assets/js/19.b80317b7.js"><link rel="prefetch" href="/blog/assets/js/2.96c22922.js"><link rel="prefetch" href="/blog/assets/js/20.c4343091.js"><link rel="prefetch" href="/blog/assets/js/21.e96c52c9.js"><link rel="prefetch" href="/blog/assets/js/22.1bae0b21.js"><link rel="prefetch" href="/blog/assets/js/23.f577b3ca.js"><link rel="prefetch" href="/blog/assets/js/24.316d4abd.js"><link rel="prefetch" href="/blog/assets/js/25.643efccd.js"><link rel="prefetch" href="/blog/assets/js/26.27265485.js"><link rel="prefetch" href="/blog/assets/js/27.38a22402.js"><link rel="prefetch" href="/blog/assets/js/28.ce6cd161.js"><link rel="prefetch" href="/blog/assets/js/29.2a4bbbfa.js"><link rel="prefetch" href="/blog/assets/js/30.811ef8a9.js"><link rel="prefetch" href="/blog/assets/js/31.cff50688.js"><link rel="prefetch" href="/blog/assets/js/32.7ea11986.js"><link rel="prefetch" href="/blog/assets/js/33.317c62c2.js"><link rel="prefetch" href="/blog/assets/js/34.64d4aa4a.js"><link rel="prefetch" href="/blog/assets/js/35.2b3e7e2e.js"><link rel="prefetch" href="/blog/assets/js/36.94c5e934.js"><link rel="prefetch" href="/blog/assets/js/37.0e038b44.js"><link rel="prefetch" href="/blog/assets/js/38.9b26f14b.js"><link rel="prefetch" href="/blog/assets/js/39.1f65731b.js"><link rel="prefetch" href="/blog/assets/js/4.316b84b7.js"><link rel="prefetch" href="/blog/assets/js/40.88324d82.js"><link rel="prefetch" href="/blog/assets/js/41.b1cc4d2a.js"><link rel="prefetch" href="/blog/assets/js/43.7f5e3750.js"><link rel="prefetch" href="/blog/assets/js/44.72c87441.js"><link rel="prefetch" href="/blog/assets/js/45.01bc7d17.js"><link rel="prefetch" href="/blog/assets/js/46.d298dc66.js"><link rel="prefetch" href="/blog/assets/js/47.dc09788e.js"><link rel="prefetch" href="/blog/assets/js/48.795aa437.js"><link rel="prefetch" href="/blog/assets/js/49.a55de8fd.js"><link rel="prefetch" href="/blog/assets/js/5.e5cf21b7.js"><link rel="prefetch" href="/blog/assets/js/50.97b05985.js"><link rel="prefetch" href="/blog/assets/js/51.bd82c922.js"><link rel="prefetch" href="/blog/assets/js/52.dd54c830.js"><link rel="prefetch" href="/blog/assets/js/53.213db39f.js"><link rel="prefetch" href="/blog/assets/js/54.1fc621c1.js"><link rel="prefetch" href="/blog/assets/js/55.a3983a75.js"><link rel="prefetch" href="/blog/assets/js/56.850ff87b.js"><link rel="prefetch" href="/blog/assets/js/57.687a94c0.js"><link rel="prefetch" href="/blog/assets/js/58.1f4a73ae.js"><link rel="prefetch" href="/blog/assets/js/59.557a9bae.js"><link rel="prefetch" href="/blog/assets/js/6.150d3b75.js"><link rel="prefetch" href="/blog/assets/js/60.d05fb8b4.js"><link rel="prefetch" href="/blog/assets/js/61.9c68ae7e.js"><link rel="prefetch" href="/blog/assets/js/62.7ab98b0c.js"><link rel="prefetch" href="/blog/assets/js/63.6d5819a0.js"><link rel="prefetch" href="/blog/assets/js/64.54f9fa17.js"><link rel="prefetch" href="/blog/assets/js/65.2191d7ee.js"><link rel="prefetch" href="/blog/assets/js/66.fe1adc41.js"><link rel="prefetch" href="/blog/assets/js/67.c2510386.js"><link rel="prefetch" href="/blog/assets/js/68.43c21c88.js"><link rel="prefetch" href="/blog/assets/js/69.b3ebff89.js"><link rel="prefetch" href="/blog/assets/js/7.40250b12.js"><link rel="prefetch" href="/blog/assets/js/70.bbf5b1bd.js"><link rel="prefetch" href="/blog/assets/js/8.3e524491.js"><link rel="prefetch" href="/blog/assets/js/9.e0f53948.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.6d141f6a.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">busyrat blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">be</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/be/nginx.html" class="nav-link">nginx</a></li><li class="dropdown-item"><!----> <a href="/blog/be/node.html" class="nav-link">node</a></li><li class="dropdown-item"><!----> <a href="/blog/be/python.html" class="nav-link">python</a></li><li class="dropdown-item"><!----> <a href="/blog/be/Redis.html" class="nav-link">Redis</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">fe</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/fe/IE.html" class="nav-link">IE</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/stack/" class="nav-link">stack</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/vue/" class="nav-link">vue</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/知识点.html" class="nav-link">知识点</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/跨域.html" class="nav-link">跨域</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">old</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/old/docker swarm学习总结.html" class="nav-link">docker swarm学习总结</a></li><li class="dropdown-item"><!----> <a href="/blog/old/git 开发规范.html" class="nav-link">git 开发规范</a></li><li class="dropdown-item"><!----> <a href="/blog/old/Gitlab CI可持续集成学习总结.html" class="nav-link">Gitlab CI可持续集成学习总结</a></li><li class="dropdown-item"><!----> <a href="/blog/old/linux命令.html" class="nav-link">linux命令</a></li><li class="dropdown-item"><!----> <a href="/blog/old/学习笔记.html" class="nav-link">学习笔记</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">op</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/op/docker/" class="nav-link">docker</a></li><li class="dropdown-item"><!----> <a href="/blog/op/gitlab-ci.html" class="nav-link">gitlab-ci</a></li><li class="dropdown-item"><!----> <a href="/blog/op/linux.html" class="nav-link">linux</a></li><li class="dropdown-item"><!----> <a href="/blog/op/nginx.html" class="nav-link">nginx</a></li><li class="dropdown-item"><!----> <a href="/blog/op/ssr.html" class="nav-link">ssr</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">others</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/others/cmder.html" class="nav-link">cmder</a></li><li class="dropdown-item"><!----> <a href="/blog/others/flex-demo.html" class="nav-link">flex-demo</a></li><li class="dropdown-item"><!----> <a href="/blog/others/Git.html" class="nav-link">Git</a></li><li class="dropdown-item"><!----> <a href="/blog/others/JavaScript设计模式与开发实践.html" class="nav-link">JavaScript设计模式与开发实践</a></li><li class="dropdown-item"><!----> <a href="/blog/others/JavaScript语言精粹.html" class="nav-link">JavaScript语言精粹</a></li><li class="dropdown-item"><!----> <a href="/blog/others/JavaScript面向对象编程指南.html" class="nav-link">JavaScript面向对象编程指南</a></li><li class="dropdown-item"><!----> <a href="/blog/others/nCoV-Wuhan.html" class="nav-link">nCoV-Wuhan</a></li><li class="dropdown-item"><!----> <a href="/blog/others/WEB协议.html" class="nav-link">WEB协议</a></li><li class="dropdown-item"><!----> <a href="/blog/others/工具集.html" class="nav-link">工具集</a></li><li class="dropdown-item"><!----> <a href="/blog/others/清单.html" class="nav-link">清单</a></li><li class="dropdown-item"><!----> <a href="/blog/others/算法.html" class="nav-link">算法</a></li><li class="dropdown-item"><!----> <a href="/blog/others/重学前端.html" class="nav-link">重学前端</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">links</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/busyrat/blog" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  blog github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/busyrat/vuepress-plugins" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  vuepress-plugins
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">be</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/be/nginx.html" class="nav-link">nginx</a></li><li class="dropdown-item"><!----> <a href="/blog/be/node.html" class="nav-link">node</a></li><li class="dropdown-item"><!----> <a href="/blog/be/python.html" class="nav-link">python</a></li><li class="dropdown-item"><!----> <a href="/blog/be/Redis.html" class="nav-link">Redis</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">fe</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/fe/IE.html" class="nav-link">IE</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/stack/" class="nav-link">stack</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/vue/" class="nav-link">vue</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/知识点.html" class="nav-link">知识点</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/跨域.html" class="nav-link">跨域</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">old</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/old/docker swarm学习总结.html" class="nav-link">docker swarm学习总结</a></li><li class="dropdown-item"><!----> <a href="/blog/old/git 开发规范.html" class="nav-link">git 开发规范</a></li><li class="dropdown-item"><!----> <a href="/blog/old/Gitlab CI可持续集成学习总结.html" class="nav-link">Gitlab CI可持续集成学习总结</a></li><li class="dropdown-item"><!----> <a href="/blog/old/linux命令.html" class="nav-link">linux命令</a></li><li class="dropdown-item"><!----> <a href="/blog/old/学习笔记.html" class="nav-link">学习笔记</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">op</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/op/docker/" class="nav-link">docker</a></li><li class="dropdown-item"><!----> <a href="/blog/op/gitlab-ci.html" class="nav-link">gitlab-ci</a></li><li class="dropdown-item"><!----> <a href="/blog/op/linux.html" class="nav-link">linux</a></li><li class="dropdown-item"><!----> <a href="/blog/op/nginx.html" class="nav-link">nginx</a></li><li class="dropdown-item"><!----> <a href="/blog/op/ssr.html" class="nav-link">ssr</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">others</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/others/cmder.html" class="nav-link">cmder</a></li><li class="dropdown-item"><!----> <a href="/blog/others/flex-demo.html" class="nav-link">flex-demo</a></li><li class="dropdown-item"><!----> <a href="/blog/others/Git.html" class="nav-link">Git</a></li><li class="dropdown-item"><!----> <a href="/blog/others/JavaScript设计模式与开发实践.html" class="nav-link">JavaScript设计模式与开发实践</a></li><li class="dropdown-item"><!----> <a href="/blog/others/JavaScript语言精粹.html" class="nav-link">JavaScript语言精粹</a></li><li class="dropdown-item"><!----> <a href="/blog/others/JavaScript面向对象编程指南.html" class="nav-link">JavaScript面向对象编程指南</a></li><li class="dropdown-item"><!----> <a href="/blog/others/nCoV-Wuhan.html" class="nav-link">nCoV-Wuhan</a></li><li class="dropdown-item"><!----> <a href="/blog/others/WEB协议.html" class="nav-link">WEB协议</a></li><li class="dropdown-item"><!----> <a href="/blog/others/工具集.html" class="nav-link">工具集</a></li><li class="dropdown-item"><!----> <a href="/blog/others/清单.html" class="nav-link">清单</a></li><li class="dropdown-item"><!----> <a href="/blog/others/算法.html" class="nav-link">算法</a></li><li class="dropdown-item"><!----> <a href="/blog/others/重学前端.html" class="nav-link">重学前端</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">links</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/busyrat/blog" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  blog github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/busyrat/vuepress-plugins" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  vuepress-plugins
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div> <!----></nav>  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="docker-swarm"><a href="#docker-swarm" aria-hidden="true" class="header-anchor">#</a> Docker Swarm</h1> <blockquote><p>Swarm 在 Docker 1.12 版本之前属于一个独立的项目，在 Docker 1.12 版本发布之后，该项目合并到了 Docker 中，成为 Docker 的一个子命令。目前，Swarm 是 Docker 社区提供的唯一一个原生支持 Docker 集群管理的工具。它可以把多个 Docker 主机组成的系统转换为单一的虚拟 Docker 主机，使得容器可以组成跨主机的子网网络。</p></blockquote> <h2 id="初始化swarm"><a href="#初始化swarm" aria-hidden="true" class="header-anchor">#</a> 初始化swarm</h2> <p>初始化后该节点自动成为管理节点，<code>docker swarm init --listen-addr &lt;MANAGER-IP&gt;:&lt;PORT&gt;</code></p> <div class="language-bash extra-class"><pre class="language-bash"><code>root@JuGuang:/home<span class="token comment"># docker swarm init</span>
+Swarm initialized: current node <span class="token punctuation">(</span>693jrftodx1nvglyqhlhevth8<span class="token punctuation">)</span> is now a manager.
+
+To <span class="token function">add</span> a worker to this swarm, run the following command:
+
+docker swarm <span class="token function">join</span> --token SWMTKN-1-5wculuv0eajx1n2egcm5p5zeshd9u8mghocgt4c0tg7hl3xp48-brtf8sedk6q7xznu0s5bd2jie 192.168.1.56:2377
+
+To <span class="token function">add</span> a manager to this swarm, run <span class="token string">'docker swarm join-token manager'</span> and follow the instructions.
+</code></pre></div><p>如果不指定ip和port，则默认在所有ip上监听2377端口</p> <div class="language-bash extra-class"><pre class="language-bash"><code>root@JuGuang:/home<span class="token comment"># docker swarm init</span>
+Swarm initialized: current node <span class="token punctuation">(</span>ou9zwv49wcn64gszp1s5ovflh<span class="token punctuation">)</span> is now a manager.
+
+To <span class="token function">add</span> a worker to this swarm, run the following command:
+
+    docker swarm <span class="token function">join</span> --token SWMTKN-1-4u4vihapr0ruqvyhlmyzyarzj21gip6m9upo028wdh96rxkeqa-4wistx5wvu4yfb9x4nhpt8hcm 192.168.1.56:2377
+
+To <span class="token function">add</span> a manager to this swarm, run <span class="token string">'docker swarm join-token manager'</span> and follow the instructions.
+
+root@JuGuang:/home<span class="token comment"># netstat -anp|grep 2377</span>
+tcp6       0      0 :::2377                 :::*                    LISTEN      7491/dockerd 
+</code></pre></div><p>如果指定ip和port，则在指定ip监听指定port</p> <div class="language-bash extra-class"><pre class="language-bash"><code>root@JuGuang:/home<span class="token comment"># docker swarm init --listen-addr 192.168.1.56:2378</span>
+Swarm initialized: current node <span class="token punctuation">(</span>8z55rcs3gpo9zuvw1toodvn34<span class="token punctuation">)</span> is now a manager.
+
+To <span class="token function">add</span> a worker to this swarm, run the following command:
+
+    docker swarm <span class="token function">join</span> --token SWMTKN-1-0gbf0poro8w71x505vfbwmvjyz9hxanynsvpv8ktn7ora4lu25-8d03yt705ycsmfof7b7l59s8c 192.168.1.56:2378
+
+To <span class="token function">add</span> a manager to this swarm, run <span class="token string">'docker swarm join-token manager'</span> and follow the instructions.
+
+root@JuGuang:/home<span class="token comment"># netstat -anp|grep 2378</span>
+tcp        0      0 192.168.1.56:2378       0.0.0.0:*               LISTEN      7491/dockerd    
+unix  3      <span class="token punctuation">[</span> <span class="token punctuation">]</span>         STREAM     CONNECTED     17297870 23784/3   
+</code></pre></div><p>从上面的执行结果可以看到docker提示了如何加入该swarm，在其它docker节点直接执行上面的命令即可加入，后面如果忘记，可以通过以下命令查看：</p> <div class="language-bash extra-class"><pre class="language-bash"><code>root@fpi:/home<span class="token comment"># docker swarm join-token worker</span>
+To <span class="token function">add</span> a worker to this swarm, run the following command:
+
+docker swarm <span class="token function">join</span> --token SWMTKN-1-48ut16wbobyicvdcst3zjlubcc3xoprmgxt8ge4c1hvfkq68ap-5c4c87klns2kbj5acbj1uqsch 192.168.1.48:2377
+
+root@fpi:/home<span class="token comment"># docker swarm join-token manager </span>
+To <span class="token function">add</span> a manager to this swarm, run the following command:
+
+docker swarm <span class="token function">join</span> --token SWMTKN-1-48ut16wbobyicvdcst3zjlubcc3xoprmgxt8ge4c1hvfkq68ap-8qqyshayfovf94s45nbbe1uci 192.168.1.48:2377
+</code></pre></div><h2 id="加入swarm"><a href="#加入swarm" aria-hidden="true" class="header-anchor">#</a> 加入swarm</h2> <p>执行命令<code>docker swarm join --token xxx &lt;MANAGER-IP&gt;:&lt;PORT&gt;</code></p> <div class="language-bash extra-class"><pre class="language-bash"><code>root@JuGuang:/home<span class="token comment"># docker swarm join --token SWMTKN-1-48ut16wbobyicvdcst3zjlubcc3xoprmgxt8ge4c1hvfkq68ap-5c4c87klns2kbj5acbj1uqsch 192.168.1.48:2377</span>
+This node joined a swarm as a worker.
+</code></pre></div><p>加入成功后可以在对应的管理节点查看到该节点：<code>docker node ls</code>，其中HOSTNAME：<code>fpi-worker-1</code>就是刚加入的节点</p> <div class="language-bash extra-class"><pre class="language-bash"><code>root@fpi:/home<span class="token comment"># docker node ls</span>
+ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS
+nibhlxst0t90nunmfpb00aso0 *   fpi-manager-1       Ready               Active              Leader
+qsrqqyw7rekm4ftua7uzn9iph     fpi-worker-1        Ready               Active     
+</code></pre></div><p>注意：一个swarm中可以存在多个管理者，节点可以以管理者的身份加入，像下面的<code>fpi-worker-1</code>这样，它的MANAGER列会被标识为Reachable，而创建此swarm的节点为<code>Leader</code></p> <div class="language-bash extra-class"><pre class="language-bash"><code>fpi@fpi-manager-1:/home$ docker node <span class="token function">ls</span>
+ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS
+nfsf7b6wj9yqstz70jfbw5fsc     fpi-worker-1        Ready               Active              Reachable
+nibhlxst0t90nunmfpb00aso0 *   fpi-manager-1       Ready               Active              Leader
+</code></pre></div><h2 id="离开-删除swarm"><a href="#离开-删除swarm" aria-hidden="true" class="header-anchor">#</a> 离开/删除swarm</h2> <p>离开，使用<code>docker swarm leave</code>命令，如果是一个管理节点离开，则会给一个提示，需要使用<code>docker swarm leave --force</code>命令；一个swarm中的所有管理节点都离开后，整个swarm就被删除</p> <div class="language-bash extra-class"><pre class="language-bash"><code>root@JuGuang:/home<span class="token comment"># docker swarm leave</span>
+Error response from daemon: You are attempting to leave the swarm on a node that is participating as a manager. Removing the last manager erases all current state of the swarm. Use <span class="token variable"><span class="token variable">`</span>--force<span class="token variable">`</span></span> to ignore this message.
+root@JuGuang:/home<span class="token comment"># docker swarm leave --force</span>
+Node left the swarm.
+</code></pre></div><p>踩坑记：创建了一个swarm，其中有一个Leader管理节点，然后又加入了另一个普通管理节点，接着删除普通管理节点，整个swarm就挂了，执行任何命令都报错，提示活着的管理节点不足。最后重建整个swarm才得以解决（可能有更好的办法）。</p> <h2 id="节点升降级"><a href="#节点升降级" aria-hidden="true" class="header-anchor">#</a> 节点升降级</h2> <ul><li>普通节点升级为管理节点：<code>docker node promote</code></li> <li>管理节点降级为普通节点：<code>docker node demote</code></li></ul> <h2 id="管理端删除节点"><a href="#管理端删除节点" aria-hidden="true" class="header-anchor">#</a> 管理端删除节点</h2> <p><code>docker swarm leave</code>命令是节点离开swarm，但是此节点的信息还记录在管理端，管理端显示此节点的<code>status</code>是<code>down</code>，要从管理端移除该节点，需要执行命令<code>docker node rm [OPTIONS] NODE [NODE...]</code></p> <div class="language-bash extra-class"><pre class="language-bash"><code>root@fpi-manager-1:~<span class="token comment"># docker node ls</span>
+ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS
+169ut86ul6i7ymgc73ci5gf1z *   fpi-manager-1       Ready               Active              Leader
+uujt74sedz62cv6oh87iq3zxf     fpi-worker-1        Down                Active 
+root@fpi-manager-1:~<span class="token comment"># docker node rm fpi-worker-1</span>
+fpi-worker-1
+root@fpi-manager-1:~<span class="token comment"># docker node ls</span>
+ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS
+169ut86ul6i7ymgc73ci5gf1z *   fpi-manager-1       Ready               Active              Leader
+</code></pre></div><h2 id="docker-service"><a href="#docker-service" aria-hidden="true" class="header-anchor">#</a> docker service</h2> <blockquote><p>有关service的详细介绍，可以参见<a href="https://docs.docker.com/get-started/part3/#introduction" target="_blank" rel="noopener noreferrer">官方文档<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></blockquote> <p>在分布式应用程序中，应用程序的不同部分被称为“service”。例如，假如你有一个视频共享网站，它可能包括一个存储应用程序数据的service，一个在用户上传某个东西后在后台进行视频转码的service，一个前端service等，各个服务可以独立部署，共同协作完成业务。引入service的概念可以实现系统的隔离，对服务进行监控、扩展，从而保证系统的高可用性。</p> <p>在大气网格项目的测试环境中，需要有前端服务（nginx），后端服务（tomcat），风场服务（windfield），zookeeper+kafka，数据库服务（mysql+mongo）等。</p> <p><code>service</code>用法如下</p> <div class="language-bash extra-class"><pre class="language-bash"><code>root@fpi-manager-1:/home/docker/baseimages/alpine-tomcat<span class="token comment"># docker service</span>
+
+Usage:	docker <span class="token function">service</span> COMMAND
+
+Manage services
+
+Options:
+      --help   Print usage
+
+Commands:
+  create      Create a new <span class="token function">service</span>
+  inspect     Display detailed information on one or <span class="token function">more</span> services
+  logs        Fetch the logs of a <span class="token function">service</span> or task
+  <span class="token function">ls</span>          List services
+  <span class="token function">ps</span>          List the tasks of one or <span class="token function">more</span> services
+  <span class="token function">rm</span>          Remove one or <span class="token function">more</span> services
+  scale       Scale one or multiple replicated services
+  update      Update a <span class="token function">service</span>
+
+Run <span class="token string">'docker service COMMAND --help'</span> <span class="token keyword">for</span> <span class="token function">more</span> information on a command.
+</code></pre></div><h2 id="docker-stack"><a href="#docker-stack" aria-hidden="true" class="header-anchor">#</a> docker stack</h2> <blockquote><p><code>stack</code>可以理解为一组<code>service</code></p></blockquote> <p>用法如下：</p> <div class="language-bash extra-class"><pre class="language-bash"><code>root@fpi-manager-1:/home/docker/baseimages/alpine-tomcat<span class="token comment"># docker stack</span>
+
+Usage:	docker stack COMMAND
+
+Manage Docker stacks
+
+Options:
+      --help   Print usage
+
+Commands:
+  deploy      Deploy a new stack or update an existing stack
+  <span class="token function">ls</span>          List stacks
+  <span class="token function">ps</span>          List the tasks <span class="token keyword">in</span> the stack
+  <span class="token function">rm</span>          Remove one or <span class="token function">more</span> stacks
+  services    List the services <span class="token keyword">in</span> the stack
+</code></pre></div><p>例如大气网格的测试环境中，前端服务（nginx），后端服务（tomcat），风场服务（windfield），zookeeper+kafka，数据库服务（mysql+mongo）等各种服务可以组合为一个<code>stack</code>。</p> <h2 id="实例"><a href="#实例" aria-hidden="true" class="header-anchor">#</a> 实例</h2> <ul><li><p>准备两台物理机：<code>192.168.1.48</code> 和  <code>192.168.1.56</code></p></li> <li><p>在<code>192.168.1.48</code>上执行<code>docker swarm init</code>，初始化swarm</p></li> <li><p>在<code>192.168.1.56</code>上执行<code>docker swarm join --token xxxxx 192.168.1.48:2377</code>，加入swarm</p></li> <li><p>在<code>192.168.1.48</code>上创建文件docker-compose.yml,写入以下内容</p></li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">&quot;3&quot;</span>
+
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">mongo</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> mongo<span class="token punctuation">:</span>3.4.10
+    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token key atrule">TZ</span><span class="token punctuation">:</span> <span class="token string">&quot;Asia/Shanghai&quot;</span>
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">&quot;27017:27017&quot;</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">&quot;/home/docker/mongo/data:/data/db&quot;</span>
+    <span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+      <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">1</span>
+      <span class="token key atrule">placement</span><span class="token punctuation">:</span>
+        <span class="token key atrule">constraints</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>node.role == manager<span class="token punctuation">]</span>
+
+  <span class="token key atrule">mysql</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> mysql<span class="token punctuation">:</span>5.7.20
+    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token key atrule">TZ</span><span class="token punctuation">:</span> <span class="token string">&quot;Asia/Shanghai&quot;</span>
+      <span class="token key atrule">MYSQL_ROOT_PASSWORD</span><span class="token punctuation">:</span> fpi123456
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">&quot;3306:3306&quot;</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">&quot;/etc/localtime:/etc/localtime&quot;</span>
+      <span class="token punctuation">-</span> <span class="token string">&quot;/home/docker/mysql/data:/var/lib/mysql&quot;</span>
+    <span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+      <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">1</span>
+      <span class="token key atrule">placement</span><span class="token punctuation">:</span>
+        <span class="token key atrule">constraints</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>node.role == manager<span class="token punctuation">]</span>
+        
+  <span class="token key atrule">tomcat</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> alpine<span class="token punctuation">-</span>tomcat<span class="token punctuation">:</span>8.5.24
+    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">&quot;mysql&quot;</span>
+      <span class="token punctuation">-</span> <span class="token string">&quot;mongo&quot;</span>
+    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token key atrule">TZ</span><span class="token punctuation">:</span> <span class="token string">&quot;Asia/Shanghai&quot;</span>
+    <span class="token key atrule">mac_address</span><span class="token punctuation">:</span> 6C<span class="token punctuation">:</span>92<span class="token punctuation">:</span>BF<span class="token punctuation">:</span>4E<span class="token punctuation">:</span>0C<span class="token punctuation">:</span>C6
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">&quot;8081:8080&quot;</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">&quot;/etc/localtime:/etc/localtime&quot;</span>
+      <span class="token punctuation">-</span> <span class="token string">&quot;/home/docker/tomcat/tomcat-agms/logs:/usr/local/tomcat/logs&quot;</span>
+      <span class="token punctuation">-</span> <span class="token string">&quot;/home/docker/tomcat/tomcat-agms/webapps:/usr/local/tomcat/webapps&quot;</span>
+      <span class="token punctuation">-</span> <span class="token string">&quot;/home/docker/tomcat/tomcat-agms/conf:/usr/local/tomcat/conf&quot;</span>
+      <span class="token punctuation">-</span> <span class="token string">&quot;/home/docker/tomcat/tomcat-agms/files:/usr/local/tomcat/files&quot;</span>
+      <span class="token punctuation">-</span> <span class="token string">&quot;/home/docker/tomcat/tomcat-agms/fonts:/usr/share/fonts&quot;</span>
+    <span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+      <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">1</span>
+      <span class="token key atrule">placement</span><span class="token punctuation">:</span>
+        <span class="token key atrule">constraints</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>node.role == manager<span class="token punctuation">]</span>
+
+  <span class="token key atrule">windfield</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> windfield<span class="token punctuation">:</span><span class="token number">1.0</span>
+    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">&quot;10000:80&quot;</span>
+    <span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+      <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">1</span>
+      <span class="token key atrule">placement</span><span class="token punctuation">:</span>
+        <span class="token key atrule">constraints</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>node.role == manager<span class="token punctuation">]</span>
+</code></pre></div><ul><li><p>部署stack，执行命令<code>docker stack deploy -c docker-compose.yml agms</code>，docker会尝试启动<code>docker-compose.yml</code>中定义的一系列服务。</p></li> <li><p>查看当前启动的service：<code>docker service ls</code></p></li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code>root@fpi-manager-1:/home/docker/agms<span class="token comment"># docker service ls</span>
+ID                  NAME                     MODE                REPLICAS            IMAGE                             PORTS
+7qnt4kfp8cwe        web_manager_visualizer   replicated          1/1                 dockersamples/visualizer:latest   *:9001-<span class="token operator">&gt;</span>8080/tcp
+kmku1xxfhwbz        agms_windfield           replicated          1/1                 windfield:1.0                     *:10000-<span class="token operator">&gt;</span>80/tcp
+llyk3og3xmh5        web_manager_portainer    replicated          1/1                 portainer/portainer:latest        *:9000-<span class="token operator">&gt;</span>9000/tcp
+lt0jre2e4exn        agms_tomcat              replicated          1/1                 alpine-tomcat:8.5.24              *:8081-<span class="token operator">&gt;</span>8080/tcp
+pjgg5x6q2muc        agms_mysql               replicated          1/1                 mysql:5.7.20                      *:3306-<span class="token operator">&gt;</span>3306/tcp
+qpdzwckwtf03        agms_mongo               replicated          1/1                 mongo:3.4.10                      *:27017-<span class="token operator">&gt;</span>27017/tcp
+</code></pre></div><ul><li>增加service规模</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code>root@fpi-manager-1:/home/docker/agms<span class="token comment"># docker service scale agms_tomcat=2</span>
+agms_tomcat scaled to 2
+root@fpi-manager-1:/home/docker/agms<span class="token comment"># docker service ls</span>
+ID                  NAME                     MODE                REPLICAS            IMAGE                             PORTS
+7qnt4kfp8cwe        web_manager_visualizer   replicated          1/1                 dockersamples/visualizer:latest   *:9001-<span class="token operator">&gt;</span>8080/tcp
+kmku1xxfhwbz        agms_windfield           replicated          1/1                 windfield:1.0                     *:10000-<span class="token operator">&gt;</span>80/tcp
+llyk3og3xmh5        web_manager_portainer    replicated          1/1                 portainer/portainer:latest        *:9000-<span class="token operator">&gt;</span>9000/tcp
+lt0jre2e4exn        agms_tomcat              replicated          2/2                 alpine-tomcat:8.5.24              *:8081-<span class="token operator">&gt;</span>8080/tcp
+pjgg5x6q2muc        agms_mysql               replicated          1/1                 mysql:5.7.20                      *:3306-<span class="token operator">&gt;</span>3306/tcp
+qpdzwckwtf03        agms_mongo               replicated          1/1                 mongo:3.4.10                      *:27017-<span class="token operator">&gt;</span>27017/tcp
+</code></pre></div><blockquote><p>可以看到<code>agms_tomcat</code>的<code>REPLICAS</code>变为<code>2/2</code>了</p></blockquote> <blockquote><p>service也可以自动修复，比如删除service对应的一个正在运行的容器，service会尝试重新启动一个新的容器,以保持应用的理想状态（维持相应的规模）。</p></blockquote> <ul><li><p>减少service规模，执行<code>docker service scale agms_tomcat=1</code></p></li> <li><p>检查负载均衡：访问<code>http://192.168.1.48:8081/agms/web/api/v1/grids/select-tree</code>，可以正常返回结果，将URL替换为<code>http://192.168.1.56:8081/agms/web/api/v1/grids/select-tree</code>，也可以正常返回结果</p></li></ul></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">上次更新: </span> <span class="time">6/5/2020, 3:22:23 AM</span></div></footer> <!----> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/blog/assets/js/app.d2fdc9c2.js" defer></script><script src="/blog/assets/js/3.54348689.js" defer></script><script src="/blog/assets/js/42.1273d541.js" defer></script><script src="/blog/assets/js/10.ff74173e.js" defer></script>
+  </body>
+</html>
