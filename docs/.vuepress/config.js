@@ -34,7 +34,7 @@ module.exports = {
   plugins: [
     'vue-demo',
     'mathjax',
-    ['@vuepress/last-updated', { transformer }],
+    // ['@vuepress/last-updated', { transformer }],
     [
       '@vuepress/pwa',
       {
